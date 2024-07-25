@@ -6,30 +6,34 @@ const RestaurantCard = ({ item }) => {
     item.info;
   const { slaString, lastMileTravelString } = sla;
   return (
-    <Link to={`/restaurants/${id}`} className="res-card">
-      <div className="res-img">
+    <Link
+      to={`/restaurants/${id}`}
+      className="flex flex-col gap-2 bg-slate-50 rounded-lg w-[350px] p-2 max-w-[350px] min-h-[400px] hover:shadow-2xl hover:border-2"
+    >
+      <div className="w-full h-[250px]">
         <img
-          src={
-            CDN_URL +
-            cloudinaryImageId
-          }
+          className="w-full h-full object-cover rounded-xl"
+          src={CDN_URL + cloudinaryImageId}
           alt="res-img"
         />
       </div>
-      <div className="res-name">{name}</div>
-      <div className="res-cusines">
+      <div className="flex justify-between items-center">
+        <div className="text-lg font-semibold">{name}</div>
+        <div className="bg-green-500 text-white flex gap-1 text-xs px-1 py-0.5 rounded">
+          <span>{avgRating}</span>
+
+          <i className="bi bi-star-fill"></i>
+        </div>
+      </div>
+      <div className="flex gap-x-3 gap-y-1 flex-wrap">
         {cuisines.map((ele, index) => (
-          <span key={index}>{ele}</span>
+          <span key={index} className="bg-gray-200 px-1 py-0.5 rounded text-xs">
+            {ele}
+          </span>
         ))}
       </div>
       <div className="res-cost">{costForTwo}</div>
       <div className="res-rating">
-        <span>
-          <span className="star-icon">
-            <i className="bi bi-star-fill"></i>
-          </span>
-          <span>{avgRating}</span>
-        </span>
         <span>{lastMileTravelString}</span>
         <span>{slaString}</span>
       </div>

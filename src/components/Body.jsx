@@ -28,9 +28,9 @@ const Body = () => {
   if(onlineStatus === false) return <h1> Looks like you are offline!! Please Check your internet Connection</h1>
 
   return (
-    <div className="body">
-      <div className="search">
-        <div className="search-div">
+    <div className="flex flex-col sm:my-4">
+      <div className="flex gap-5 items-center">
+        {/* <div className="search-div">
           <input
             type="text"
             name="search"
@@ -39,15 +39,16 @@ const Body = () => {
             onChange={handleChange}
           />
           <button onClick={() => searchClick()}>Search</button>
-        </div>
-        <button className="filter-btn" onClick={() => filterTopRated()}>
+        </div> */}
+        <div>Filters</div>
+        <button className="border-2 px-2 py-1 rounded-md hover:bg-red-500 hover:text-white" onClick={() => filterTopRated()}>
           Top Rated Restaurants
         </button>
       </div>
       {resListItems.length === 0 ? (
         <Shimmer />
       ) : (
-        <div className="res-container">
+        <div className="flex gap-x-12 gap-y-6 py-2 flex-wrap">
           {filteredRes.map((item, index) => {
             return <RestaurantCard item={item} key={item.info.id} />;
           })}

@@ -8,16 +8,14 @@ import Contact from "./components/Contact";
 import Error from "./components/Error"
 import RestaurantMenu from "./components/RestaurantMenu";
 import Shimmer from "./components/Shimmer";
+import Home from "./components/Home";
 const Grocery = lazy(()=> import("./components/Grocery"))
 
 function App() {
 
   return (
     <>
-      <div className="container">
-      <Header />
-      <Outlet />
-    </div>
+      <Home />
     </>
   )
 }
