@@ -2,15 +2,12 @@ import { Link } from "react-router-dom";
 import { CDN_URL } from "../utils/constants";
 
 const RestaurantCard = ({ item }) => {
-  const { avgRating, cuisines, costForTwo, name, cloudinaryImageId, sla, id } =
+  const { avgRating, cuisines, costForTwo, name, cloudinaryImageId, sla } =
     item.info;
   const { slaString, lastMileTravelString } = sla;
   return (
-    <Link
-      to={`/restaurants/${id}`}
-      className="flex flex-col gap-2 bg-slate-50 rounded-lg w-[350px] p-2 max-w-[350px] min-h-[400px] hover:shadow-2xl hover:border-2"
-    >
-      <div className="w-full h-[250px]">
+    <>
+      <div className="w-full h-[200px]">
         <img
           className="w-full h-full object-cover rounded-xl"
           src={CDN_URL + cloudinaryImageId}
@@ -37,7 +34,7 @@ const RestaurantCard = ({ item }) => {
         <span>{lastMileTravelString}</span>
         <span>{slaString}</span>
       </div>
-    </Link>
+      </>
   );
 };
 
