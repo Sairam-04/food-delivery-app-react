@@ -1,25 +1,27 @@
 import RestaurantCard from "./RestaurantCard";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Shimmer from "./Shimmer";
 import useRestaurant from "../utils/useRestaurant";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import { Link } from "react-router-dom";
 import WithPromotedLabel from "./HOC/WithPromotedLabel"
+import SearchContext from "./context/SearchContext";
 
 const Body = () => {
   const resListItems = useRestaurant();
-  const [searchText, setSearchText] = useState("");
+  // const [searchText, setSearchText] = useState("");
   const [filteredRes, setFilteredRes] = useState(resListItems);
+  const {searchText} = useContext(SearchContext);
   useEffect(() => {
     setFilteredRes(resListItems);
-  }, [resListItems]);
+    searchClick();
+  }, [resListItems, searchText]);
+
   const filterTopRated = () => {
     const filteredItems = resListItems.filter((res) => res.info.avgRating > 4);
     setFilteredRes(filteredItems);
   };
-  const handleChange = (e) => {
-    setSearchText(e.target.value);
-  };
+
   const searchClick = () => {
     const filterItems = resListItems.filter((res) =>
       res.info.name.toLowerCase().includes(searchText)
@@ -55,6 +57,7 @@ const Body = () => {
         >
           Top Rated Restaurants
         </button>
+        {/* <div>{searchText}</div> */}
       </div>
       {resListItems.length === 0 ? (
         <Shimmer />

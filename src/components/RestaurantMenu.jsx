@@ -2,10 +2,15 @@ import { useParams } from "react-router-dom";
 import Shimmer from "./Shimmer";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
 import RestaurantCategory from "./RestaurantCategory";
+import { useState } from "react";
 
 const RestaurantMenu = () => {
   const { resId } = useParams();
   const resInfo = useRestaurantMenu(resId);
+  const [showIndex, setShowIndex] = useState(0);
+  const showIndexClick = (index) => {
+    setShowIndex(index);
+  };
   if (resInfo === null) return <Shimmer />;
   const { itemCards } =
     resInfo?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card
@@ -33,7 +38,7 @@ const RestaurantMenu = () => {
   } = resData;
   const { lastMileTravelString, slaString } = sla;
   return (
-    <div className="w-3/5 mx-auto my-4">
+    <div className="w-3/5 mx-auto my-4 p-5 shadow-2xl bg-slate-100 rounded-lg">
       {resData && (
         <div className="flex justify-between py-5">
           <div className="flex flex-col">
@@ -75,8 +80,16 @@ const RestaurantMenu = () => {
       )}
       <hr />
       <div className="flex flex-col gap-6 py-3">
-        {categories.map((ele) => {
-          return <RestaurantCategory key={ele?.card?.info?.id} category={ele} />;
+        {categories.map((ele, index) => {
+          return (
+            <RestaurantCategory
+              key={ele?.card?.card?.title }
+              index={index}
+              category={ele}
+              showItems = {index === showIndex ? true : false}
+              showIndexClick = {showIndexClick}
+            />
+          );
         })}
       </div>
     </div>

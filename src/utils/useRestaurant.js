@@ -13,6 +13,11 @@ const useRestaurant = () => {
     setResListItems(
       json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
+    setResListItems((prev) => [
+      ...prev,
+      ...(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants || [])
+    ]);
+    
   };
   return resListItems;
 };

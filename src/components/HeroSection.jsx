@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
+import SearchContext from "./context/SearchContext";
 
 const HeroSection = () => {
+  const {search, setSearch} = useContext(SearchContext)
   return (
     <div className="h-[60vh] mt-[12vh] home flex flex-col gap-5 justify-center items-center text-white">
       <div className="flex flex-col gap-5 sm:px-0 px-4 text-center">
@@ -32,7 +34,9 @@ const HeroSection = () => {
           </span>
           <input
             type="search"
-            name="q"
+            value={search}
+            onChange={(e)=> setSearch(e.target.value)}
+            name="search"
             className="w-full py-3 text-base text-black bg-white rounded-lg pl-10 focus:outline-none shadow-2xl focus:bg-white focus:text-gray-900"
             placeholder="Search for Restaurant, Cusines or a Dish"
           />

@@ -6,6 +6,7 @@ import useOnlineStatus from "../utils/useOnlineStatus";
 const Header = () => {
   const [status, setStatus] = useState("Login");
   const onlineStatus = useOnlineStatus();
+
   return (
     <div className="fixed top-0 bg-[#131213] w-full h-[12vh] z-30">
       <div className="header h-full text-white w-full sm:w-4/5 mx-auto flex items-center sm:px-0 px-4 justify-between">

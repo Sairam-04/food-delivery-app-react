@@ -19,9 +19,9 @@ class About extends React.Component{
                 <h2>This is the Food Delivery Application build in React</h2>
                 {/* <User name="Sai" contact="sairamramavath01@gmail.com" location="Hyd" /> */}
                 <UserClass name="Child1" contact="sairamramavath01@gmail.com" location="Hyd" />
-                <UserClass name="Child2" contact="sairamramavath01@gmail.com" location="Hyd" />
+                {/* <UserClass name="Child2" contact="sairamramavath01@gmail.com" location="Hyd" />
                 <UserClass name="Child3" contact="sairamramavath01@gmail.com" location="Hyd" />
-                <UserClass name="Child4" contact="sairamramavath01@gmail.com" location="Hyd" />
+                <UserClass name="Child4" contact="sairamramavath01@gmail.com" location="Hyd" /> */}
 
             </div>
 
