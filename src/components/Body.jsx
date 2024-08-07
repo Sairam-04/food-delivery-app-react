@@ -9,11 +9,18 @@ import SearchContext from "./context/SearchContext";
 
 const Body = () => {
   const resListItems = useRestaurant();
-  // const [searchText, setSearchText] = useState("");
-  const [filteredRes, setFilteredRes] = useState(resListItems);
+  const uniqueFilteredRes = resListItems && Object.values(
+    resListItems.reduce((acc, item) => {
+      if (!acc[item.info.id]) {
+        acc[item.info.id] = item;
+      }
+      return acc;
+    }, {})
+  );
+  const [filteredRes, setFilteredRes] = useState(uniqueFilteredRes);
   const {searchText} = useContext(SearchContext);
   useEffect(() => {
-    setFilteredRes(resListItems);
+    setFilteredRes(uniqueFilteredRes);
     searchClick();
   }, [resListItems, searchText]);
 
@@ -23,11 +30,12 @@ const Body = () => {
   };
 
   const searchClick = () => {
-    const filterItems = resListItems.filter((res) =>
+    const filterItems = uniqueFilteredRes.filter((res) =>
       res.info.name.toLowerCase().includes(searchText)
     );
     setFilteredRes(filterItems);
   };
+
   const RestaurantCardPromoted = WithPromotedLabel(RestaurantCard);
   const onlineStatus = useOnlineStatus();
   if (onlineStatus === false)

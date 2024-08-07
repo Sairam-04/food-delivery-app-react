@@ -7,7 +7,7 @@ const WithPromotedLabel = (RestaurantCard) => {
     return (
       <div className="relative">
         {aggregatedDiscountInfoV3 && (
-          <div className="absolute top-0 left-0 bg-black text-white font-semibold px-2 py-1 rounded-lg">
+          <div className="absolute top-0 left-0 bg-black text-white font-semibold px-2 py-1 shadow-2xl rounded-lg">
             {aggregatedDiscountInfoV3.header} {aggregatedDiscountInfoV3.subHeader}
           </div>
         )}

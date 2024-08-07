@@ -2,10 +2,13 @@ import { useState } from "react";
 import logo from "../assets/logo.svg";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const [status, setStatus] = useState("Login");
   const onlineStatus = useOnlineStatus();
+
+  const cartItems = useSelector((store) => store.cart.cartItems);
 
   return (
     <div className="fixed top-0 bg-[#131213] w-full h-[12vh] z-30">
@@ -35,8 +38,13 @@ const Header = () => {
             <li className="hover:text-[#FDC55E] hover:scale-105 hover:font-semibold">
               <Link to="/grocery">Grocery</Link>
             </li>
-            <li>
-              <i className="bi bi-cart4 text-2xl"></i>
+            <li className="relative cursor-pointer">
+              <Link to="/cart" className="hover:text-[#FDC55E] hover:scale-105 ">
+                <i className="bi bi-cart4 text-2xl"></i>
+              </Link>
+              <div className="absolute -top-4 left-4 bg-gray-100/10 border-green-400 border-[1px] -z-10 p-1 text-xs rounded-full w-8 h-8 flex items-center justify-center">
+                {cartItems && cartItems.length}
+              </div>
             </li>
           </ul>
           <button
@@ -51,6 +59,7 @@ const Header = () => {
         <div className="sm:hidden block">
           <i className="bi bi-list text-2xl"></i>
         </div>
+        
       </div>
     </div>
   );

@@ -95,3 +95,13 @@
             * Slower Transitions
             * Traditional Websites
             * SEO Friendly
+
+
+# React Redux
+    Steps for Setting up Redux with React
+    1) Install react-redux and @reduxjs/toolkit packages
+    2) Configure Store 
+    3) Provide Store to the App
+    4) Create Slice and Reducer Function
+    5) Dispatch a Action
+    6) Use Selector to read the data
